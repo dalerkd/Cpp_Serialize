@@ -40,19 +40,45 @@ public:
 	NODE* GetFatherNode();
 	NODE* GetAllDataCopy();
 
-	/*
-		return
-		false: 结束处理,已经完成工作,不需要继续了
-		true:  继续处理
-	*/
-	typedef bool(CNodesManage::*CALLBACK_EXPLORER)(NODE*);
-	//true 继续处理,false 结束处理
-	bool ExplorerNodes(CALLBACK_EXPLORER call, NODE* start);
+
 private:
 	//释放节点内存
 	bool callBackFreeTheNode(NODE*);
 	//复制
 	bool callBackCopy(NODE*);
+	void callBackCopyNodeBackNotify();
+	//总
+	NODE* CopyHeadNode;
+	//当前
+	NODE* CopyNowNode;
+	
+private:
+	/*
+		return
+		false: 结束处理,已经完成工作,不需要继续了
+		true:  继续处理
+		NODE* 指向正在浏览的节点
+		STATUS: 0: 正在返回父节点
+				Other: 正在进入子节点
+	*/
+	typedef bool(CNodesManage::*CALLBACK_EXPLORER)(NODE*);
+	/*
+	往上返回一层的时候会被调用,通知:本层无新节点，即将进入上一层节点
+	*/
+	typedef void(CNodesManage::*CALLBACK_EXPLORER_BACK)();
+	
+	//多叉树是没有中序遍历的
+	/*
+	先序遍历
+	true 继续处理,false 结束处理
+	*/
+	bool ExplorerNodesPreviousOrder(CALLBACK_EXPLORER call, CALLBACK_EXPLORER_BACK back, NODE* start);
+	/*
+	后序遍历
+	true 继续处理,false 结束处理
+	*/
+	bool ExplorerNodesPostOrder(CALLBACK_EXPLORER call, CALLBACK_EXPLORER_BACK back, NODE* start);
+
 
 private:
 	NODE* m_now_Node;//指向当前节点
