@@ -2,6 +2,9 @@
 #include "NodesManage.h"
 #include <map>
 #include <string>
+#include "EXCEP.h"
+#include "debug.h"
+
 using std::map;
 using std::string;
 
@@ -57,10 +60,17 @@ public:
 	*/
 
 public:
-	void SetNewType(string typeName, CNodesManage*);
-	CNodesManage::NODE* FindType(string typeName);
+	/*
+	设置一种新的类型，如果已经存在会抛异常
+	*/
+	void SetNewType(string typeName, CNodesManage*)throw(EXCEP());
+	/*
+	找不到会异常.
+	获取的是一个现有节点 的拷贝
+	*/
+	CNodesManage::NODE* FindTypeFullNodeCopy(string typeName)throw(EXCEP());
 private:
-	map<string/*typeName*/ , CNodesManage*> symbols;
+	map<string/*typeName*/ , CNodesManage*> m_symbols;
 
 };
 
