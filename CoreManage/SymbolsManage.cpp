@@ -41,20 +41,50 @@ void CSymbolsManage::SetNewType(string typeName, CNodesManage * pNODE) throw(EXC
 	m_symbols[typeName] = pNODE;
 }
 
-CNodesManage::NODE* CSymbolsManage::FindTypeFullNodeCopy(string typeName) throw(EXCEP())
+CNodesManage::NODE* CSymbolsManage::FindTypeFullNodeCopy(string typeName, CNodesManage* nowNodeManage, CNodesManage::NODE* nowNode)throw(EXCEP())
 {
 	if (typeName.empty())
 	{
 		LogError("New Type不能为空");
 	}
 
-	map<string, CNodesManage*>::iterator iter = m_symbols.find(typeName);
-	if (m_symbols.end() == iter)
+	CNodesManage::NODE* tmpNode = const_cast<CNodesManage::NODE*>(nowNode);
+
+	for (;;)
 	{
-		LogError("查找的类型不存在");
-	}
-	else
-	{
-		return iter->second->GetAllDataCopy();
+		//到了全局作用域
+		if (tmpNode == nullptr||nowNodeManage == nullptr)
+		{
+			map<string, CNodesManage*>::iterator iter = m_symbols.find(typeName);
+			if (m_symbols.end() == iter)
+			{
+				LogError("查找的类型不存在");
+			}
+			else
+			{
+				return iter->second->GetAllDataCopy();
+			}
+		}
+
+		/*
+		查找本级
+		*/
+		list<CNodesManage::NODE*>::iterator iter;
+		for (iter = tmpNode->child_list.begin(); iter != tmpNode->child_list.end(); ++iter)
+		{
+			auto pNode =*iter;
+			if (pNode!=nullptr)
+			{
+				if (pNode->type == typeName)
+				{
+					return nowNodeManage->GetAllDataCopy(pNode);
+				}
+			}
+		}
+
+		/*
+		回到上一级
+		*/
+		tmpNode = tmpNode->father;
 	}
 }

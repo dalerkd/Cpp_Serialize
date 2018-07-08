@@ -62,13 +62,22 @@ public:
 public:
 	/*
 	设置一种新的类型，如果已经存在会抛异常
+
+	如果nowNode.father == nullptr则是添加到全局作用域.
+	否则是某的局部作用域
 	*/
-	void SetNewType(string typeName, CNodesManage*)throw(EXCEP());
+	void SetNewType(string typeName, CNodesManage* nowNode)throw(EXCEP());
+	
 	/*
 	找不到会异常.
 	获取的是一个现有节点 的拷贝
+	CNodesManage* nowNodeManage: 节点管理指针,全局作用域为nullptr。
+	CNodesManage* nowNode: 要查找作用域的指针,全局作用域为nullptr。
+	
+	介绍：查找从指定节点的作用域及父节点的作用域中及全局作用域是否存在该typeName值。
+	存在则获取该类型的一个拷贝
 	*/
-	CNodesManage::NODE* FindTypeFullNodeCopy(string typeName)throw(EXCEP());
+	CNodesManage::NODE* FindTypeFullNodeCopy(string typeName,CNodesManage* nowNodeManage,CNodesManage::NODE* nowNode)throw(EXCEP());
 private:
 	map<string/*typeName*/ , CNodesManage*> m_symbols;
 

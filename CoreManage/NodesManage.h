@@ -38,7 +38,10 @@ public:
 	*/
 	void AddChildNode(NODE*);
 	NODE* GetFatherNode();
-	NODE* GetAllDataCopy();
+	/*
+	start = nullptr代表从Head开始
+	*/
+	NODE* GetAllDataCopy(CNodesManage::NODE* start = nullptr);
 
 
 private:

@@ -25,7 +25,7 @@ CNodesManage::NODE * CNodesManage::GetFatherNode()
 	return m_now_Node->father;	
 }
 
-CNodesManage::NODE* CNodesManage::GetAllDataCopy()
+CNodesManage::NODE* CNodesManage::GetAllDataCopy(CNodesManage::NODE* startNode)
 {
 	if (CopyNowNode != nullptr)
 	{
@@ -38,9 +38,13 @@ CNodesManage::NODE* CNodesManage::GetAllDataCopy()
 	CopyNowNode = nullptr;
 	CopyHeadNode = nullptr;
 
+	if (startNode==nullptr)
+	{
+		startNode = const_cast<NODE*>(m_Node_Head);
+	}
 
 	ExplorerNodesPreviousOrder(&CNodesManage::callBackCopy, &CNodesManage::callBackCopyNodeBackNotify,
-		const_cast<NODE*>(m_Node_Head));
+		startNode);
 
 
 
