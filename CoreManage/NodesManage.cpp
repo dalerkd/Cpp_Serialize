@@ -15,6 +15,14 @@ CNodesManage::~CNodesManage()
 	ExplorerNodesPostOrder(&CNodesManage::callBackFreeTheNode, nullptr,const_cast<NODE*>(m_Node_Head));
 }
 
+void CNodesManage::BackFatherNode()
+{
+	if (m_now_Node!=nullptr)
+	{
+		m_now_Node = m_now_Node->father;
+	}
+}
+
 void CNodesManage::AddChildNode(NODE * pnode)
 {
 	m_now_Node->child_list.push_back(pnode);

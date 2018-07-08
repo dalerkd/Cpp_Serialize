@@ -36,7 +36,11 @@ public:
 	为当前节点添加子节点
 	auto处理父节点
 	*/
+	//返回当前节点的父节点
+	void BackFatherNode();
+	//为当前节点添加子节点
 	void AddChildNode(NODE*);
+	//为当前节点的父节点
 	NODE* GetFatherNode();
 	/*
 	start = nullptr代表从Head开始

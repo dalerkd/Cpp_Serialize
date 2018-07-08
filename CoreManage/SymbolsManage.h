@@ -65,8 +65,11 @@ public:
 
 	如果nowNode.father == nullptr则是添加到全局作用域.
 	否则是某的局部作用域
+
+	nowNodeManage	：全局结构请设置该节点，非全局请设置为空。
+	fatherNode		：要在谁的节点下添加就写谁。在全局下设置为空。
 	*/
-	void SetNewType(string typeName, CNodesManage* nowNode)throw(EXCEP());
+	void SetNewType(string typeName, CNodesManage* nowNodeManage, CNodesManage::NODE* fatherNode=nullptr)throw(EXCEP());
 	
 	/*
 	找不到会异常.
