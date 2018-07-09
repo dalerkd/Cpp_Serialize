@@ -1,4 +1,6 @@
 //////debug.h
+#include "EXCEP.h"
+
 #ifndef _DEBUG_H
 #define _DEBUG_H
 

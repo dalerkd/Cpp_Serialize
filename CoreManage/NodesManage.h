@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <list>
+#include "debug.h"
+
 using std::string;
 using std::list;
 
@@ -28,6 +30,7 @@ public:
 		NODE() { father = nullptr; }
 		NODE* father;
 		string type;
+		string name;
 		VALUE node_value;
 		list<NODE*> child_list;
 	};
@@ -42,6 +45,33 @@ public:
 	void AddChildNode(NODE*);
 	//为当前节点的父节点
 	NODE* GetFatherNode();
+	void SetNodeName(string str)
+	{
+		if (m_now_Node)
+		{
+			m_now_Node->name = str;
+		}
+		else
+		{
+			LogError("Hi");
+		}
+	}
+	void SetNodeType(string str)
+	{
+		if (m_now_Node)
+		{
+			m_now_Node->type = str;
+		}
+		else
+		{
+			LogError("Hi");
+		}
+	}
+	
+
+
+
+
 	/*
 	start = nullptr代表从Head开始
 	*/
