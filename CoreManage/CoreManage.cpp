@@ -7,15 +7,18 @@
 #include "NodesManage.h"
 #include "SymbolsManage.h"
 
+
+#define _CRTDBG_MAP_ALLOC
+
 using std::cout;
 bool g_OPEN_LOG = true;
 
-int main()
+void test()
 {
 	CNodesManage* pNM = new CNodesManage();
 	CSymbolsManage* pSM = new CSymbolsManage();
 
-	
+
 
 	pSM->SetNewType("firstStruct", pNM, nullptr);
 	/*
@@ -30,7 +33,16 @@ int main()
 	pTemp->type = "struct";
 	pNM->AddChildNode(pTemp);
 
+	delete(pSM);
+	
+}
 
+
+int main()
+{
+
+	test();
+	_CrtDumpMemoryLeaks();
 	return 0;
 }
 
