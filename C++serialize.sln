@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CoreManage", "CoreManage\CoreManage.vcxproj", "{8EF9551A-832B-42E3-9AEF-7888B4F423AB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "token_decide", "token_decide\token_decide.vcxproj", "{3FDEBB57-40CF-43E0-9A2E-008005F115E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{8EF9551A-832B-42E3-9AEF-7888B4F423AB}.Release|x64.Build.0 = Release|x64
 		{8EF9551A-832B-42E3-9AEF-7888B4F423AB}.Release|x86.ActiveCfg = Release|Win32
 		{8EF9551A-832B-42E3-9AEF-7888B4F423AB}.Release|x86.Build.0 = Release|Win32
+		{3FDEBB57-40CF-43E0-9A2E-008005F115E5}.Debug|x64.ActiveCfg = Debug|x64
+		{3FDEBB57-40CF-43E0-9A2E-008005F115E5}.Debug|x64.Build.0 = Debug|x64
+		{3FDEBB57-40CF-43E0-9A2E-008005F115E5}.Debug|x86.ActiveCfg = Debug|Win32
+		{3FDEBB57-40CF-43E0-9A2E-008005F115E5}.Debug|x86.Build.0 = Debug|Win32
+		{3FDEBB57-40CF-43E0-9A2E-008005F115E5}.Release|x64.ActiveCfg = Release|x64
+		{3FDEBB57-40CF-43E0-9A2E-008005F115E5}.Release|x64.Build.0 = Release|x64
+		{3FDEBB57-40CF-43E0-9A2E-008005F115E5}.Release|x86.ActiveCfg = Release|Win32
+		{3FDEBB57-40CF-43E0-9A2E-008005F115E5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
